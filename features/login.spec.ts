@@ -1,8 +1,13 @@
 import { test } from '@playwright/test';
-import { loadFeature, defineFeature } from 'jest-cucumber';
+import { InternetHerokuLoginPage } from '../pages/InternetHerokuLogin.page';
 
-const feature = loadFeature('./login.feature');
-
-defineFeature(feature, test => {
-  // Step definitions are implemented in separate files.
+test.describe('Login to the Internet Herokuapp', () => {
+  test('Navigate to secure page after successful login', async ({ page }) => {
+    const loginPage = new InternetHerokuLoginPage(page);
+    await loginPage.navigate();
+    await loginPage.enterUsername('tomsmith');
+    await loginPage.enterPassword('SuperSecretPassword!');
+    await loginPage.clickLogin();
+    await loginPage.expectSecureAreaVisible();
+  });
 });

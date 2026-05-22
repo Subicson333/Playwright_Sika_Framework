@@ -1,8 +1,8 @@
-Feature: SauceDemo Login
+Feature: Login to the Internet Herokuapp
 
-  Scenario: Successful Login
-    Given navigate to saucedemo.com
-    When type "standard_user" in the username field
-    And type "secret_sauce" in the password field
-    And click on the login button
-    Then should catalog page displayed
+  Scenario: Navigate to secure page after successful login
+    Given I navigate to the login page
+    When I enter username "tomsmith"
+    And I enter password "SuperSecretPassword!"
+    And I click the login button
+    Then I should see the secure area
