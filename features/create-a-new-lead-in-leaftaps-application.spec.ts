@@ -1,0 +1,37 @@
+import { test, expect } from '@playwright/test';
+import { LoginPage } from '../pages/Login.page';
+import { HomePage } from '../pages/HomePage';
+import { CrmSfaPage } from '../pages/CrmSfaPage';
+import { LeadsPage } from '../pages/LeadsPage';
+import { CreateLeadPage } from '../pages/CreateLeadPage';
+import { ViewLeadPage } from '../pages/ViewLeadPage';
+
+test('Create a new Lead in Leaftaps application', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.navigate();
+    await loginPage.navigate();
+    await loginPage.assertUsernameVisible();
+    await loginPage.enterUsername("DemoCSR2");
+    await loginPage.enterPassword("crmsfa");
+    await loginPage.clickLogin();
+    const homePage = new HomePage(page);
+    await homePage.assertCrmSfaVisible();
+    await homePage.clickCrmSfa();
+    const crmSfaPage = new CrmSfaPage(page);
+    await crmSfaPage.assertLeadsVisible();
+    await crmSfaPage.assertCrmSfaVisible();
+    await crmSfaPage.clickLeads();
+    const leadsPage = new LeadsPage(page);
+    await leadsPage.assertCreateLeadVisible();
+    await leadsPage.clickCreateLead();
+    const createLeadPage = new CreateLeadPage(page);
+    await createLeadPage.assertCompanyNameVisible();
+    await createLeadPage.enterCompanyName("AutoTestCorp");
+    await createLeadPage.enterFirstName("Rajan");
+    await createLeadPage.enterLastName("Menon");
+    await createLeadPage.enterDepartmentName("Quality Assurance");
+    await createLeadPage.enterEmailAddress("rajan.menon@autotest.com");
+    await createLeadPage.submitCreateLead();
+    const viewLeadPage = new ViewLeadPage(page);
+    await viewLeadPage.assertViewLeadVisible();
+});
