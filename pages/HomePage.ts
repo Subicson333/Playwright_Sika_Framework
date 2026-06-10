@@ -12,4 +12,12 @@ export class HomePage extends BasePage {
   async clickCrmSfa(): Promise<void> {
     await this.page.getByLabel('CRM/SFA').click();
   }
+
+async clickCrmSfaLink(): Promise<void> {
+    await this.page.getByLabel('CRM/SFA').click();
+  }
+
+async clickCreateLeadInShortcuts(): Promise<void> {
+    await this.page.getByLabel('Create Lead').click();
+  }
 }

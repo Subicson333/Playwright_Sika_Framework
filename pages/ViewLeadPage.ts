@@ -8,4 +8,8 @@ export class ViewLeadPage extends BasePage {
   async assertViewLeadVisible(): Promise<void> {
     await expect(this.page.getByLabel('View Lead')).toBeVisible();
   }
+
+async expectViewLeadVisible(): Promise<void> {
+    await expect(this.page.getByLabel('View Lead')).toBeVisible();
+  }
 }

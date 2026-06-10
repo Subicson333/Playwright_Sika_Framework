@@ -32,4 +32,8 @@ export class CreateLeadPage extends BasePage {
   async submitCreateLead(): Promise<void> {
     await this.page.getByLabel('Create Lead').click();
   }
+
+async clickCreateLeadButton(): Promise<void> {
+    await this.page.getByLabel('Create Lead').click();
+  }
 }
