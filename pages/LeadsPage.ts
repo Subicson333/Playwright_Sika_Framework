@@ -12,4 +12,20 @@ export class LeadsPage extends BasePage {
   async clickCreateLead(): Promise<void> {
     await this.page.getByLabel('Create Lead').click();
   }
+
+async clickFindLeadsLink(): Promise<void> {
+    await this.page.getByLabel('getByLabel(\'Find Leads\')').click();
+  }
+
+async enterFirstName(firstName: string): Promise<void> {
+    await this.page.getByLabel('getByLabel(\'First Name\')').fill(firstName);
+  }
+
+async clickFindLeadsButton(): Promise<void> {
+    await this.page.getByLabel('getByLabel(\'Find Leads\')').click();
+  }
+
+async clickFirstResultLead(): Promise<void> {
+    await this.page.getByLabel('getByLabel(\'First Result Lead\')').click();
+  }
 }

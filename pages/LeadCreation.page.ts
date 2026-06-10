@@ -17,4 +17,8 @@ export class LeadCreationPage extends BasePage {
   async enterPassword(password: string): Promise<void> {
     await this.page.getByLabel('Password').fill(password);
   }
+
+async clickLoginButton(): Promise<void> {
+    await this.page.getByLabel('getByLabel(\'Login\')').click();
+  }
 }

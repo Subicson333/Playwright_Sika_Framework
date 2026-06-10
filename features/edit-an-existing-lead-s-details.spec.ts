@@ -1,0 +1,32 @@
+import { test, expect } from '@playwright/test';
+import { LeadCreationPage } from '../pages/LeadCreation.page';
+import { HomePage } from '../pages/HomePage';
+import { CrmSfaPage } from '../pages/CrmSfaPage';
+import { LeadsPage } from '../pages/LeadsPage';
+import { ViewLeadPage } from '../pages/ViewLeadPage';
+
+test('Edit an existing lead's details', async ({ page }) => {
+    const leadCreationPage = new LeadCreationPage(page);
+    await leadCreationPage.navigateToLogin();
+    await leadCreationPage.enterUsername("DemoCSR2");
+    await leadCreationPage.enterPassword("crmsfa");
+    await leadCreationPage.clickLoginButton();
+    const homePage = new HomePage(page);
+    await homePage.clickCrmSfaLink();
+    const crmSfaPage = new CrmSfaPage(page);
+    await crmSfaPage.clickLeads();
+    const leadsPage = new LeadsPage(page);
+    await leadsPage.clickFindLeadsLink();
+    await leadsPage.enterFirstName("Arjun");
+    await leadsPage.clickFindLeadsButton();
+    await leadsPage.clickFirstResultLead();
+    const viewLeadPage = new ViewLeadPage(page);
+    await viewLeadPage.clickEditButton();
+    await viewLeadPage.enterFirstName("Vijay");
+    await viewLeadPage.enterLastName("Raman");
+    await viewLeadPage.enterCompanyName("Qeagle Solutions");
+    await viewLeadPage.clickUpdateButton();
+    await viewLeadPage.assertViewLeadVisible();
+    await viewLeadPage.assertFirstNameEquals("Vijay");
+    await viewLeadPage.assertLastNameEquals("Raman");
+});
