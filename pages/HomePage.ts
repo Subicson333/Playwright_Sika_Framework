@@ -20,4 +20,8 @@ async clickCrmSfaLink(): Promise<void> {
 async clickCreateLeadInShortcuts(): Promise<void> {
     await this.page.getByLabel('Create Lead').click();
   }
+
+async expectCrmSfaVisible(): Promise<void> {
+    await expect(this.page.getByLabel('getByLabel(\'CRM/SFA\')')).toBeVisible();
+  }
 }
